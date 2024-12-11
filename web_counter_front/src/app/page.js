@@ -38,25 +38,31 @@ export default function Home() {
     }
   };
 
-  // Increment count
-  const increment = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    updateCountOnServer(newCount);
-  };
 
-  // Decrement count
-  const decrement = () => {
-    const newCount = count - 1;
-    setCount(newCount);
-    updateCountOnServer(newCount);
-  };
-
-  // Reset count to 0
-  const reset = () => {
-    setCount(0);
-    updateCountOnServer(0);
-  };
+  const increment = async () => {
+    try {
+      const response = await axios.patch("http://localhost:8000/count/increase");
+      setCount(response.data); // Assuming the API returns just the count number
+    } catch (error) {
+      console.error("Error fetching count:", error);
+    }
+  }
+  const decrement = async () => {
+    try {
+      const response = await axios.patch("http://localhost:8000/count/decrease");
+      setCount(response.data); // Assuming the API returns just the count number
+    } catch (error) {
+      console.error("Error fetching count:", error);
+    }
+  }
+  const reset = async () => {
+    try {
+      const response = await axios.patch("http://localhost:8000/count/reset");
+      setCount(response.data); // Assuming the API returns just the count number
+    } catch (error) {
+      console.error("Error fetching count:", error);
+    }
+  }
 
   return (
     <div className={styles.page}>

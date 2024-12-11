@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service countMultiply {
+    rpc countMultiply (CounterMultiplyRequest) returns (CounterResponse) {};
+}
+
+message CounterMultiplyRequest{
+    int32 count = 1;
+    int32 multiply = 2;
+    int32 operation = 3;
+}
+
+message CounterResponse{
+    string message = 1;
+}
