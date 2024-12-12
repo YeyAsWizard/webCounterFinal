@@ -17,11 +17,18 @@ function onGetCount(call, callback){
     callback(null, {message: newCount})
     console.log(newCount)
 }
+function onOverwrite(call, callback){
+    overCount = call.request.newCount
+    callback(null, {newCount: overCount})
+}
 
 function main(){
     const server = new grpc.Server();
     server.addService(counter_proto.countMultiply.service,{
         countMultiply: onGetCount,
+    })
+    server.addService(counter_proto.overwriteCount.service,{
+        overwriteCount: onOverwrite
     })
 
     server.bindAsync(

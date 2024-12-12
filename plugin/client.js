@@ -21,7 +21,7 @@ function main() {
         grpc.credentials.createInsecure()
     );
     client.countMultiply({"count": 50, "multiply": 21, "operation": -1}, (error, response) => {
-        response ? console.log(`${response.message}`) : console.log(error)
+        response ? console.log(`${response.newCount}`) : console.log(error)
     })
 }
 
